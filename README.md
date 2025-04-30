@@ -47,6 +47,7 @@ This test opens the Live88 **desktop lobby**, switches into the iframe, opens th
 
 ```LIVE88-UI-TESTS/
 ├── node_modules/             # Installed dependencies
+├── playwright_report/        # Interactive HTML report generated after running tests
 ├── test-results/             # Playwright test reports
 ├── tests/                    # UI test specifications
 │   ├── join-table.spec.js    # Test 1: "Join Table" button test
