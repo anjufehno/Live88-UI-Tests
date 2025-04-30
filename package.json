@@ -1,0 +1,14 @@
+{
+  "name": "live88-ui-tests",
+  "version": "1.0.0",
+  "description": "UI tests for the Live88 platform using Playwright",
+  "type": "module",
+  "scripts": {
+    "test": "npx playwright test",
+    "show-report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "playwright": "^1.52.0"
+  }
+}
