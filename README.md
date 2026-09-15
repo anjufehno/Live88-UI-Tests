@@ -1,70 +1,104 @@
-# Live88 UI Tests with Playwright
+# Live88 UI Tests
 
-This project contains automated UI tests for the [Live88 demo](https://demo.live88.io/operator/live88demo/live88-lobby/fun), created using [Microsoft Playwright](https://playwright.dev/).
+![Playwright](https://img.shields.io/badge/Playwright-000?style=for-the-badge&logo=playwright)
+![JavaScript](https://img.shields.io/badge/JavaScript-000?style=for-the-badge&logo=javascript)
+![Node.js](https://img.shields.io/badge/Node.js-000?style=for-the-badge&logo=nodedotjs)
 
----
+**End-to-end UI test suite built with Playwright for a browser-based gaming lobby.**
 
-## Test 1: Join Table Button Works
-
-This test opens the Live88 **desktop lobby**, switches into the iframe, and verifies that the **"Join table"** button works correctly:
-
-### What the test checks:
-
-- The iframe containing the lobby appears on the page.
-- The first visible "Join table" button inside the iframe is found.
-- The button is clickable.
-- After clicking, the iframe still contains a `<body>` element — confirming the game UI is loaded.
+The project focuses on testing user-facing flows inside an embedded iframe, including navigation, interactive controls and settings visibility.
 
 ---
 
-## Test 2: Opening Settings and Verifying Settings Items
+## 🧪 Covered Scenarios
 
-This test opens the Live88 **desktop lobby**, switches into the iframe, opens the side **menu**, and verifies the **Settings** section is accessible and contains key items.
+### Join table flow
 
-### What the test checks:
+The test verifies that:
 
-- The iframe containing the lobby appears on the page.
-- The side menu button (two-line icon) is found and clicked.
-- The **Settings** item in the menu becomes visible and is clicked.
-- Inside the settings screen, the following items are visible:
-  - **Nickname**
-  - **Master volume**
-  - **Dealer voice**
-  - **Client sounds**
-  - **Language**
+- the game lobby iframe loads successfully
+- a visible **Join table** action is available
+- the action can be triggered
+- the embedded application remains loaded after interaction
 
----
+### Settings flow
 
-## Tech Stack
+The test verifies that:
 
-- [Playwright](https://playwright.dev/)
-- JavaScript (ES6)
-- Node.js (v22.25.0)
+- the lobby iframe is available
+- the navigation menu opens
+- the Settings view is reachable
+- expected controls such as nickname, volume, dealer voice, client sounds and language are visible
 
 ---
 
-## Project Structure
+## 🛠 Tech Stack
 
-```LIVE88-UI-TESTS/
-├── node_modules/             # Installed dependencies
-├── playwright_report/        # Interactive HTML report generated after running tests
-├── test-results/             # Playwright test reports
-├── tests/                    # UI test specifications
-│   ├── join-table.spec.js    # Test 1: "Join Table" button test
-│   └── settings.spec.js      # Test 2: Verifying Settings Items
-├── package.json              # Project metadata and scripts
-├── package-lock.json         # Dependency lock file
-├── playwright.config.js      # Playwright configuration
-└── README.md                 # Project documentation
+`Playwright` · `JavaScript ES6` · `Node.js`
+
+---
+
+## Testing Concepts Demonstrated
+
+- End-to-end browser automation
+- iframe interaction
+- stable `data-test-id` selectors
+- explicit visibility assertions
+- asynchronous UI handling
+- screenshots on failure
+- video retention on failure
+- reusable Playwright configuration
+
+---
+
+## 📁 Project Structure
+
+```text
+Live88-UI-Tests/
+├── tests/
+│   ├── join-table.spec.js
+│   └── settings.spec.js
+├── playwright.config.js
+├── package.json
+├── package-lock.json
+├── .gitignore
+└── README.md
+```
+
+Generated dependencies and test artifacts are excluded from version control.
+
+---
+
+## 🚀 Run Locally
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Install Playwright browser binaries
+
+```bash
+npx playwright install
+```
+
+### Run the test suite
+
+```bash
+npm test
+```
+
+### Open the HTML report
+
+```bash
+npm run show-report
 ```
 
 ---
 
-## How to run
+## Project Focus
 
-Make sure you have [Node.js](https://nodejs.org/) installed, then:
+This repository demonstrates practical frontend testing skills beyond component implementation, with emphasis on browser automation and validating real user flows in a third-party web interface.
 
-```bash
-npm install
-npx playwright install
-npx playwright test
+Built by [Jelizaveta Kruglova](https://github.com/anjufehno).
