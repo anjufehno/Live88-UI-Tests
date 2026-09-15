@@ -1,25 +1,37 @@
 import { test, expect } from '@playwright/test';
 
-test('Opening settings and verifying settings items', async ({ page }) => {
-  await page.goto('https://demo.live88.io/operator/live88demo/live88-lobby/fun');
+const LOBBY_URL = 'https://demo.live88.io/operator/live88demo/live88-lobby/fun';
 
-  const iframeLocator = page.locator('iframe#iframeId');
-  await expect(iframeLocator).toBeVisible({ timeout: 10000 });
+test('user can open settings and see core controls', async ({ page }) => {
+  await page.goto(LOBBY_URL);
 
-  const frameHandle = await iframeLocator.elementHandle();
-  const frame = await frameHandle.contentFrame();
+  const iframe = page.locator('iframe#iframeId');
+  await expect(iframe).toBeVisible({ timeout: 10_000 });
 
-  const menuButton = frame.locator('[data-test-id="button-click-open-menu-modal"]');
-  await expect(menuButton).toBeVisible({ timeout: 10000 });
+  const lobby = page.frameLocator('iframe#iframeId');
+  const menuButton = lobby.locator(
+    '[data-test-id="button-click-open-menu-modal"]',
+  );
+
+  await expect(menuButton).toBeVisible({ timeout: 10_000 });
   await menuButton.click();
 
-  const settingsItem = frame.locator('li[data-test-id="menu-link-settings"]');
-  await expect(settingsItem).toBeVisible({ timeout: 5000 });
+  const settingsItem = lobby.locator(
+    'li[data-test-id="menu-link-settings"]',
+  );
+
+  await expect(settingsItem).toBeVisible({ timeout: 5_000 });
   await settingsItem.click();
 
-  await expect(frame.getByText('Nickname')).toBeVisible();
-  await expect(frame.getByText('Master volume')).toBeVisible();
-  await expect(frame.getByText('Dealer voice')).toBeVisible();
-  await expect(frame.getByText('Client sounds')).toBeVisible();
-  await expect(frame.getByText('Language')).toBeVisible();
+  const expectedSettings = [
+    'Nickname',
+    'Master volume',
+    'Dealer voice',
+    'Client sounds',
+    'Language',
+  ];
+
+  for (const label of expectedSettings) {
+    await expect(lobby.getByText(label, { exact: true })).toBeVisible();
+  }
 });
