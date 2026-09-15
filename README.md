@@ -6,6 +6,8 @@
 
 **End-to-end UI test suite built with Playwright for a browser-based gaming lobby.**
 
+**Portfolio focus:** End-to-end browser automation, iframe testing and resilient UI checks.
+
 The project focuses on testing user-facing flows inside an embedded iframe, including navigation, interactive controls and settings visibility.
 
 ---
