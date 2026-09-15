@@ -1,19 +1,20 @@
 import { test, expect } from '@playwright/test';
 
-test('Join table button works inside iframe', async ({ page }) => {
-  await page.goto('https://demo.live88.io/operator/live88demo/live88-lobby/fun');
+const LOBBY_URL = 'https://demo.live88.io/operator/live88demo/live88-lobby/fun';
 
-  const iframeLocator = page.locator('iframe#iframeId');
-  await expect(iframeLocator).toBeVisible({ timeout: 10000 });
+test('user can join a table from the lobby', async ({ page }) => {
+  await page.goto(LOBBY_URL);
 
-  const frameHandle = await iframeLocator.elementHandle();
-  const frame = await frameHandle.contentFrame();
+  const iframe = page.locator('iframe#iframeId');
+  await expect(iframe).toBeVisible({ timeout: 10_000 });
 
-  const joinButtons = frame.locator('[data-test-id="button-click-join-table-button"]');
-  await expect(joinButtons.first()).toBeVisible({ timeout: 10000 });
+  const lobby = page.frameLocator('iframe#iframeId');
+  const joinButton = lobby
+    .locator('[data-test-id="button-click-join-table-button"]')
+    .first();
 
-  await joinButtons.first().click();
+  await expect(joinButton).toBeVisible({ timeout: 10_000 });
+  await joinButton.click();
 
-  const body = await frame.$('body');
-  expect(body).not.toBeNull();
+  await expect(lobby.locator('body')).toBeVisible();
 });
